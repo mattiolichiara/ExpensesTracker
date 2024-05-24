@@ -28,7 +28,7 @@ public class Expenses {
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
     @Column(name = "transaction_type", nullable = false)
-    private Boolean transactionType;
+    private String transactionType;
     @JoinColumn(name = "id_sub_category", nullable = false)
     @ManyToOne
     private SubCategory idSubCategory;

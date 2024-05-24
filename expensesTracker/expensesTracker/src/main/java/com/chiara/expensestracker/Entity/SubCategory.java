@@ -1,5 +1,6 @@
 package com.chiara.expensestracker.Entity;
 
+import com.chiara.expensestracker.DTOs.Income.IncomeDTO;
 import com.chiara.expensestracker.DTOs.SubCategory.CustomSubCategoryInsert;
 import com.chiara.expensestracker.DTOs.SubCategory.SubCategoryDTO;
 import jakarta.persistence.*;
@@ -32,14 +33,14 @@ public class SubCategory {
         this.idSubCategory = s.getIdSubCategory();
         this.isCustom = s.getIsCustom();
         this.subCategoryName = s.getSubCategoryName();
-        this.idCategory = new Category(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom());
+        this.idCategory = new Category(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom(), s.getIdCategory().getIdIncome());
     }
 
     public SubCategory(CustomSubCategoryInsert s) {
         this.idSubCategory = s.getIdSubCategory();
         this.isCustom = s.getIsCustom();
         this.subCategoryName = s.getSubCategoryName();
-        this.idCategory = new Category(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom());
+        this.idCategory = new Category(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom(), new Income(s.getIdCategory().getIdIncome()));
     }
 }
 

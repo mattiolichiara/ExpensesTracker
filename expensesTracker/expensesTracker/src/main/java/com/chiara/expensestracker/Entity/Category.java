@@ -24,17 +24,22 @@ public class Category {
     private String categoryName;
     @Column(name = "is_custom", nullable = false)
     private Boolean isCustom;
+    @JoinColumn(name = "id_income")
+    @ManyToOne
+    private Income idIncome;
 
     public Category(CategoryDTO c) {
         this.categoryName = c.getCategoryName();
         this.idCategory = c.getIdCategory();
         this.isCustom = c.getIsCustom();
+        this.idIncome = c.getIdIncome();
     }
 
     public Category(CustomCategoryInsert c) {
         this.categoryName = c.getCategoryName();
         this.idCategory = c.getIdCategory();
         this.isCustom = c.getIsCustom();
+        this.idIncome = c.getIdIncome();
     }
 
 }

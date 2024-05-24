@@ -28,11 +28,15 @@ public class Earnings {
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
     @Column(name = "transaction_type", nullable = false)
-    private BigDecimal transactionType;
+    private String transactionType;
     @JoinColumn(name = "id_sub_category", nullable = false)
-    @OneToOne
+    @ManyToOne
     private SubCategory idSubCategory;
     @JoinColumn(name = "id_income", nullable = false)
-    @OneToOne
+    @ManyToOne
     private Income idIncome;
+
+
+
+
 }

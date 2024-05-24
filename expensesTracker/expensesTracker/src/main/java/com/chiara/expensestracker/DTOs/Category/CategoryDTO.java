@@ -1,6 +1,8 @@
 package com.chiara.expensestracker.DTOs.Category;
 
 import com.chiara.expensestracker.Entity.Category;
+import com.chiara.expensestracker.Entity.Income;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,11 +21,14 @@ public class CategoryDTO {
     private String categoryName;
     @JsonProperty("isCustom")
     private Boolean isCustom;
+    @JsonIgnore
+    private Income idIncome;
 
     public CategoryDTO(Category c) {
         this.idCategory = c.getIdCategory();
         this.categoryName = c.getCategoryName();
         this.isCustom = c.getIsCustom();
+        this.idIncome = c.getIdIncome();
     }
 
 }

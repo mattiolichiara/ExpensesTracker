@@ -27,6 +27,9 @@ public class Income {
     private BigDecimal cardIncome;
     @Column(name = "total_income", nullable = false)
     private BigDecimal totalIncome;
+//    @JoinColumn(name = "id_user", nullable = false)
+//    @ManyToOne
+//    private User idUser;
 
     public Income(IncomeDTO i) {
         this.idIncome = i.getIdIncome();

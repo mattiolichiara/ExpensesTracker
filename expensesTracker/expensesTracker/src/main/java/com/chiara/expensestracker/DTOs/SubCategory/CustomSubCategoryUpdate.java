@@ -1,6 +1,7 @@
 package com.chiara.expensestracker.DTOs.SubCategory;
 
 import com.chiara.expensestracker.DTOs.Category.FindCategory;
+import com.chiara.expensestracker.DTOs.Income.IncomeDTO;
 import com.chiara.expensestracker.Entity.SubCategory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +32,6 @@ public class CustomSubCategoryUpdate {
         this.idSubCategory = s.getIdSubCategory();
         this.isCustom = s.getIsCustom();
         this.subCategoryName = s.getSubCategoryName();
-        this.idCategory = new FindCategory(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom());
+        this.idCategory = new FindCategory(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom(), new IncomeDTO(s.getIdCategory().getIdIncome()));
     }
 }

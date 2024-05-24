@@ -1,6 +1,7 @@
 package com.chiara.expensestracker.DTOs.Expenses;
 
 import com.chiara.expensestracker.Entity.Expenses;
+import com.chiara.expensestracker.Utils.TransactionType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class UpdateExpense {
     @JsonProperty("amount")
     private BigDecimal amount;
     @JsonProperty("transactionType")
-    private Boolean transactionType;
+    private TransactionType transactionType;
     @JsonProperty("idSubCategory")
     private Integer idSubCategory;
     @JsonProperty("idIncome")

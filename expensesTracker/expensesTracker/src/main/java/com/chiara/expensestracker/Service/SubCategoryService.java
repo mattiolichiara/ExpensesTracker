@@ -2,6 +2,7 @@ package com.chiara.expensestracker.Service;
 
 import com.chiara.expensestracker.DTOs.Category.CategoryDTO;
 import com.chiara.expensestracker.DTOs.Category.FindCategory;
+import com.chiara.expensestracker.DTOs.Income.IncomeDTO;
 import com.chiara.expensestracker.DTOs.SubCategory.CustomSubCategoryInsert;
 import com.chiara.expensestracker.DTOs.SubCategory.CustomSubCategoryUpdate;
 import com.chiara.expensestracker.DTOs.SubCategory.SubCategoryDTO;
@@ -22,8 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class SubCategoryService {
 
-    private SubCategoryRepository subCategoryRepository;
-    private CategoryService categoryService;
+    private final SubCategoryRepository subCategoryRepository;
+    private final CategoryService categoryService;
 
     @Autowired
     public SubCategoryService(SubCategoryRepository subCategoryRepository, CategoryService categoryService) {
@@ -107,7 +108,7 @@ public class SubCategoryService {
 
         for(CustomSubCategoryInsert subcat : subcategoryDTOs) {
             category = categoryService.getOnebyId(subcat.getIdCategory().getIdCategory());
-            subcat.setIdCategory(new FindCategory(category.getIdCategory(), category.getCategoryName(), category.getIsCustom()));
+            subcat.setIdCategory(new FindCategory(category.getIdCategory(), category.getCategoryName(), category.getIsCustom(), new IncomeDTO(category.getIdIncome())));
             if(subcat.getSubCategoryName().equals("") || subcat.getSubCategoryName()==null) {
                 throw new BadRequestException("Sub Category name can't be empty");
             }
@@ -185,7 +186,7 @@ public class SubCategoryService {
         if(subCategory.getIsCustom()) {
 
             try {
-                subCategory.setIdCategory(new Category(category.getIdCategory(), category.getCategoryName(), category.getIsCustom()));
+                subCategory.setIdCategory(new Category(category.getIdCategory(), category.getCategoryName(), category.getIsCustom(), category.getIdIncome()));
                 subCategory.setSubCategoryName(subcategoryToUpdate.getSubCategoryName());
                 subCategoryRepository.save(subCategory);
             } catch(HTTPRunTimeException e) {

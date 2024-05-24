@@ -15,6 +15,7 @@ import com.chiara.expensestracker.Exceptions.HTTPRunTimeException;
 import com.chiara.expensestracker.Exceptions.InternalServerErrorException;
 import com.chiara.expensestracker.Exceptions.NotFoundException;
 import com.chiara.expensestracker.Repository.ExpensesRepository;
+import com.chiara.expensestracker.Utils.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +65,7 @@ public class ExpensesService {
 
         try {
 
-            if(insertExpense.getTransactionType()) {
+            if(insertExpense.getTransactionType() == TransactionType.CARD) {
                 incomeDTO = incomeService.updateCardIncome(new UpdateCardIncome(incomeDTO.getIdIncome(), null, insertExpense.getAmount(), null));
             } else {
                 incomeDTO = incomeService.updateCashIncome(new UpdateCashIncome(incomeDTO.getIdIncome(), insertExpense.getAmount(), null, null));
@@ -92,7 +93,7 @@ public class ExpensesService {
         if(expOpt.isPresent()) {
             expense = expOpt.get();
 
-            if(expense.getTransactionType()) {
+            if(expense.getTransactionType() == TransactionType.CARD) {
                 incomeService.updateCardIncome(new UpdateCardIncome(expense.getIdIncome().getIdIncome(), null, expense.getAmount(), null));
             } else {
                 incomeService.updateCashIncome(new UpdateCashIncome(expense.getIdIncome().getIdIncome(), expense.getAmount(), null, null));
@@ -165,16 +166,16 @@ public class ExpensesService {
         }
 
         if(updateExpense.getTransactionType()!=expense.getTransactionType()) {
-            if(expense.getTransactionType() && !updateExpense.getTransactionType()) {
+            if((expense.getTransactionType() == TransactionType.CARD) && (updateExpense.getTransactionType() == TransactionType.CASH)) {
                 incomeService.updateCashIncome(new UpdateCashIncome(updateExpense.getIdIncome(),
                         incomeDTO.getCashIncome().add(updateExpense.getAmount().negate()), incomeDTO.getCardIncome().add(expense.getAmount()), null));
             }
-            if(!expense.getTransactionType() && updateExpense.getTransactionType()) {
+            if(expense.getTransactionType() == TransactionType.CASH && updateExpense.getTransactionType() == TransactionType.CARD) {
                 incomeService.updateCardIncome(new UpdateCardIncome(updateExpense.getIdIncome(), incomeDTO.getCashIncome().add(expense.getAmount()),
                         incomeDTO.getCardIncome().add(updateExpense.getAmount().negate()), null));
             }
         } else {
-            if(updateExpense.getTransactionType()) {
+            if(updateExpense.getTransactionType() == TransactionType.CARD) {
                 incomeService.updateCardIncome(new UpdateCardIncome(updateExpense.getIdIncome(), null,
                         incomeDTO.getCardIncome().add(expense.getAmount().add(updateExpense.getAmount().negate())), null));
             } else {

@@ -30,7 +30,7 @@ public class SubCategoryDTO {
         this.idSubCategory = s.getIdSubCategory();
         this.isCustom = s.getIsCustom();
         this.subCategoryName = s.getSubCategoryName();
-        this.idCategory = new CategoryDTO(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom());
+        this.idCategory = new CategoryDTO(s.getIdCategory().getIdCategory(), s.getIdCategory().getCategoryName(), s.getIdCategory().getIsCustom(), s.getIdCategory().getIdIncome());
     }
 
 }

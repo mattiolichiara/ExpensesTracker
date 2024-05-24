@@ -1,5 +1,6 @@
 package com.chiara.expensestracker.Entity;
 
+import com.chiara.expensestracker.Utils.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class Earnings {
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
     @Column(name = "transaction_type", nullable = false)
-    private String transactionType;
+    private TransactionType transactionType;
     @JoinColumn(name = "id_sub_category", nullable = false)
     @ManyToOne
     private SubCategory idSubCategory;

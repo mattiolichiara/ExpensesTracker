@@ -10,9 +10,14 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     List<Category> getAllByIsCustom(Boolean isCustom);
+
     Category getByIdCategory(Integer id);
+
     List<Category> getAllByCategoryNameContainsIgnoreCase(String searchText);
+
     Boolean existsByIdCategoryAndIsCustomIsTrue(Integer id);
+
     Boolean existsAllByIdCategoryInAndIsCustomIsTrue(List<Integer> ids);
+
 
 }

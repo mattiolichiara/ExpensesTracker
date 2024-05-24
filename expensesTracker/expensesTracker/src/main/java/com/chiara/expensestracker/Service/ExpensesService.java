@@ -225,7 +225,7 @@ public class ExpensesService {
             throw new BadRequestException("No trasactions are allowed for days after the current date");
         }
 
-        List<Expenses> expenses = expensesRepository.findAllByCreationDateIsGreaterThanEqualAndCreationDateIsLessThanEqualAndIdIncome(startDate, endDate,null ); //TODO fix
+        List<Expenses> expenses = expensesRepository.findAllByCreationDateIsGreaterThanEqualAndCreationDateIsLessThanEqualAndIdIncome_IdIncome(startDate, endDate,null ); //TODO fix
         List<ExpensesDTO> expensesDTO = expenses.stream().map(e-> new ExpensesDTO(e)).collect(Collectors.toList());
         if(expenses.isEmpty() || expensesDTO.isEmpty()) {
             throw new  NotFoundException("No expenses found");

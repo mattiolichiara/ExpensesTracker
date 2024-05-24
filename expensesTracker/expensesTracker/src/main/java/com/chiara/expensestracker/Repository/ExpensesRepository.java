@@ -11,7 +11,9 @@ import java.util.List;
 public interface ExpensesRepository extends JpaRepository<Expenses, Integer> {
 
     Boolean existsAllByIdExpensesIn(List<Integer> expensesToDelete);
+
     Expenses getByIdExpenses(Integer idExpense);
-    List<Expenses> findAllByCreationDateIsGreaterThanEqualAndCreationDateIsLessThanEqualAndIdIncome(LocalDate startDate, LocalDate endDate, Integer idIncome);
+
+    List<Expenses> findAllByCreationDateIsGreaterThanEqualAndCreationDateIsLessThanEqualAndIdIncome_IdIncome(LocalDate startDate, LocalDate endDate, Integer idIncome);
 
 }

@@ -21,9 +21,9 @@ services:
     image: 'postgres:14-alpine'
     restart: unless-stopped
     environment:
-      - 'POSTGRES_DB=expensesTracker'
+      - 'POSTGRES_DB=expensestracker'
       - 'POSTGRES_PASSWORD=pass'
-      - 'POSTGRES_USER=user'
+      - 'POSTGRES_USER=postgres'
     ports:
       - '5432:5432'
     volumes:

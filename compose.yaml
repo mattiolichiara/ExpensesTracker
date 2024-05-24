@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  #  mysql:
+  #    image: 'mysql:latest'
+  #    environment:
+  #      - 'MYSQL_DATABASE=mydatabase'
+  #      - 'MYSQL_PASSWORD=secret'
+  #      - 'MYSQL_ROOT_PASSWORD=verysecret'
+  #      - 'MYSQL_USER=myuser'
+  #    ports:
+  #      - '3306'
+  #  oracle:
+  #    image: 'gvenzl/oracle-free:latest'
+  #    environment:
+  #      - 'ORACLE_PASSWORD=secret'
+  #    ports:
+  #      - '1521'
+
+
+  postgres:
+    image: 'postgres:14-alpine'
+    restart: unless-stopped
+    environment:
+      - 'POSTGRES_DB=expensesTracker'
+      - 'POSTGRES_PASSWORD=pass'
+      - 'POSTGRES_USER=user'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
